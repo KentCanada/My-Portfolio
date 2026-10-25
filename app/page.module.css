@@ -311,6 +311,11 @@
   border-bottom: 1px solid var(--line);
 }
 
+.projectList {
+  display: grid;
+  gap: 28px;
+}
+
 .projectVisual {
   position: relative;
   display: block;

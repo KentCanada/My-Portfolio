@@ -18,6 +18,27 @@ const projects = [
     image: "/food-hub/hero.jpg",
     imageAlt: "A colorful bowl of fresh food from the Food Hub concept",
     href: "/projects/food-hub",
+    number: "01",
+    action: "Explore Food Hub",
+  },
+  {
+    title: "AI Lead Processing Automation",
+    category: "Personal project",
+    description:
+      "An AI-assisted lead processing workflow that classifies website inquiries, routes leads to the appropriate sales team, generates follow-up email drafts for human review, and records lead details in Google Sheets.",
+    technologies: [
+      "Next.js",
+      "JavaScript",
+      "n8n",
+      "Ollama",
+      "AI/LLM",
+      "Google Sheets",
+      "Webhooks",
+    ],
+    imageAlt: "A diagram of an AI-assisted lead processing workflow",
+    href: "/projects/ai-lead-processing",
+    number: "02",
+    action: "View Project",
   },
 ];
 
@@ -92,21 +113,92 @@ function ProjectCard({ project }) {
         href={project.href}
         aria-label={`View ${project.title} project`}
       >
-        <Image
-          className={styles.projectImage}
-          src={project.image}
-          alt={project.imageAlt}
-          fill
-          loading="eager"
-          sizes="(max-width: 760px) 100vw, 58vw"
-        />
-        <span className={styles.projectImageLabel}>PROJECT / 01</span>
+        {project.image ? (
+          <Image
+            className={styles.projectImage}
+            src={project.image}
+            alt={project.imageAlt}
+            fill
+            loading="eager"
+            sizes="(max-width: 760px) 100vw, 58vw"
+          />
+        ) : (
+          <svg
+            className={styles.projectImage}
+            aria-hidden="true"
+            viewBox="0 0 720 430"
+            preserveAspectRatio="xMidYMid meet"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <rect width="720" height="430" fill="#e6e3d9" />
+            <path
+              d="M185 214h100m150 0h100"
+              fill="none"
+              stroke="#9b9c8d"
+              strokeDasharray="5 7"
+              strokeWidth="2"
+            />
+            <g fill="#fbfaf7" stroke="#b9b6aa">
+              <rect x="35" y="156" width="150" height="116" rx="3" />
+              <rect x="285" y="156" width="150" height="116" rx="3" />
+              <rect x="535" y="156" width="150" height="116" rx="3" />
+            </g>
+            <g fill="#777b60">
+              <circle cx="110" cy="191" r="12" />
+              <circle cx="360" cy="191" r="12" />
+              <circle cx="610" cy="191" r="12" />
+            </g>
+            <g
+              fill="#292d29"
+              fontFamily="Arial, sans-serif"
+              textAnchor="middle"
+            >
+              <text x="110" y="229" fontSize="12" fontWeight="600">
+                NEW INQUIRY
+              </text>
+              <text x="360" y="229" fontSize="11" fontWeight="600">
+                AI CLASSIFICATION
+              </text>
+              <text x="610" y="229" fontSize="12" fontWeight="600">
+                HUMAN REVIEW
+              </text>
+              <text x="110" y="249" fill="#777b60" fontSize="10">
+                Website form
+              </text>
+              <text x="360" y="249" fill="#777b60" fontSize="10">
+                Route and draft
+              </text>
+              <text x="610" y="249" fill="#777b60" fontSize="10">
+                Google Sheets
+              </text>
+              <text
+                x="60"
+                y="76"
+                fill="#777b60"
+                fontSize="11"
+                fontWeight="600"
+                letterSpacing="1.5"
+                textAnchor="start"
+              >
+                LEAD PROCESSING / WORKFLOW
+              </text>
+            </g>
+          </svg>
+        )}
+        <span className={styles.projectImageLabel}>
+          PROJECT / {project.number}
+        </span>
       </a>
 
       <div className={styles.projectInfo}>
         <div className={styles.projectTopline}>
           <p className={styles.projectMeta}>{project.category}</p>
-          <span className={styles.projectNumber}>01</span>
+          <span className={styles.projectNumber}>{project.number}</span>
         </div>
         <h3>{project.title}</h3>
         <p className={styles.projectDescription}>{project.description}</p>
@@ -116,7 +208,7 @@ function ProjectCard({ project }) {
           ))}
         </div>
         <a className={styles.projectLink} href={project.href}>
-          Explore Food Hub <ArrowIcon />
+          {project.action} <ArrowIcon />
         </a>
       </div>
     </article>
